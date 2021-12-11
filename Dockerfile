@@ -57,7 +57,9 @@ RUN wget -qnc https://raw.githubusercontent.com/deepmind/alphafold/main/docker/o
 COPY . /opt/colabfold
 RUN /opt/conda/bin/python -m pip install --no-cache-dir install \
         /opt/colabfold[alphafold] \
-        https://storage.googleapis.com/jax-releases/cuda112/jaxlib-0.1.75+cuda112.cudnn82-cp37-none-manylinux2010_x86_64.whl
+        https://storage.googleapis.com/jax-releases/cuda11/jaxlib-0.1.75+cuda11.cudnn82-cp37-none-manylinux2010_x86_64.whl
+
+RUN chmod -R a+rx /opt/conda/pkgs/cuda-toolkit
 
 WORKDIR /work
 ENTRYPOINT ["jupyter-notebook", "--ip", "0.0.0.0", "--no-browser"]
